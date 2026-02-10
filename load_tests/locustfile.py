@@ -1,0 +1,4 @@
+"""
+Locust load testing scenarios.
+"""
+
