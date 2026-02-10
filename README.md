@@ -1,72 +1,43 @@
-# LLM Router System
+# Streamlit App - LLM Router System
 
-Production-grade distributed LLM processing pipeline with intelligent routing, caching, and observability.
+## Prerequisites
 
-## 📋 Overview
+- Python 3.10+
+- Redis running on localhost:6379
+- Groq API key in `.env` file
 
-This system routes LLM requests across multiple providers (OpenAI, Anthropic, Groq) based on:
-- Request complexity
-- Cost optimization
-- Provider health
-- Latency requirements
-
-## 🚀 Quick Start
+## Run
 
 ```bash
-# 1. Clone repository
-git clone <repo-url>
-cd llm-router-system
-
-# 2. Create virtual environment
-python3.11 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# 3. Install dependencies
+# 1. Install dependencies
 pip install -r requirements.txt
 
-# 4. Setup environment
-cp .env.example .env
-# Edit .env and add your GROQ_API_KEY
+# 2. Start Redis (if not running)
+redis-server
 
-# 5. Start Redis
-docker-compose up -d redis
+# 3. Start the FastAPI backend
+python -m src.main
 
-# 6. Run tests
-pytest tests/ -v
-
-# 7. Start API server
-uvicorn src.api.app:app --reload --host 0.0.0.0 --port 8000
-
-# 8. Start workers (in another terminal)
-rq worker --url redis://localhost:6379
+# 4. In a new terminal, start Streamlit
+streamlit run streamlit_app.py
 ```
 
-## 📊 Architecture
+The app opens at **http://localhost:8501**.
 
-See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed architecture documentation.
+## Model Routing
 
-## 🧪 Testing
+| Query Type | Model | Example |
+|---|---|---|
+| Simple | llama-3.1-8b-instant | "What is the capital of France?" |
+| Coding | mixtral-8x7b-32768 | "Write a Python function to sort a list" |
+| Complex | llama-3.3-70b-versatile | "Analyze the economic implications of AI" |
+| High latency/rate | gemma2-9b-it | Auto-fallback when system is under load |
 
-```bash
-# Unit tests
-pytest tests/ -v --cov=src
+## Test Panel
 
-# Load testing
-locust -f load_tests/locustfile.py --host http://localhost:8000
-```
+Click the test buttons at the bottom of the app to verify:
 
-## 📖 Documentation
-
-- [Architecture](ARCHITECTURE.md)
-- [Routing Logic](docs/ROUTING_LOGIC.md)
-- [Cost Optimization](docs/COST_OPTIMIZATION.md)
-- [Observability](docs/OBSERVABILITY.md)
-- [Scaling Strategy](docs/SCALING_STRATEGY.md)
-
-## 🔧 Configuration
-
-See `.env.example` for all available configuration options.
-
-## 📝 License
-
-MIT
+- **Test Router** - Backend is alive and routing
+- **Test Redis** - Redis connectivity
+- **Test Latency** - End-to-end response time
+- **Test Model Routing** - Correct model selected for simple, coding, and complex queries
