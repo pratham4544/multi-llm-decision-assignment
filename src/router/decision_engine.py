@@ -49,10 +49,10 @@ class DecisionEngine:
             ComplexityLevel.MODERATE: 0.95,
             ComplexityLevel.COMPLEX: 0.90,
         },
-        ("groq", "mixtral-8x7b-32768"): {
+        ("groq", "moonshotai/kimi-k2-instruct-0905"): {
             ComplexityLevel.SIMPLE: 0.85,
-            ComplexityLevel.MODERATE: 0.85,
-            ComplexityLevel.COMPLEX: 0.75,
+            ComplexityLevel.MODERATE: 0.90,
+            ComplexityLevel.COMPLEX: 0.80,
         },
         ("groq", "gemma2-9b-it"): {
             ComplexityLevel.SIMPLE: 0.90,
@@ -65,7 +65,7 @@ class DecisionEngine:
     MODEL_COSTS = {
         ("groq", "llama-3.1-8b-instant"): 0.000065,
         ("groq", "llama-3.3-70b-versatile"): 0.00069,
-        ("groq", "mixtral-8x7b-32768"): 0.00024,
+        ("groq", "moonshotai/kimi-k2-instruct-0905"): 0.00024,
         ("groq", "gemma2-9b-it"): 0.00020,
     }
 
@@ -73,7 +73,7 @@ class DecisionEngine:
     MODEL_LATENCY = {
         ("groq", "llama-3.1-8b-instant"): 200,
         ("groq", "llama-3.3-70b-versatile"): 500,
-        ("groq", "mixtral-8x7b-32768"): 400,
+        ("groq", "moonshotai/kimi-k2-instruct-0905"): 400,
         ("groq", "gemma2-9b-it"): 250,
     }
 
@@ -142,12 +142,12 @@ class DecisionEngine:
                     confidence=0.80,
                 )
 
-        # Rule 3: Coding tasks -> mixtral-8x7b-32768
+        # Rule 3: Coding tasks -> moonshotai/kimi-k2-instruct-0905 (code specialist)
         if question_type == "coding":
-            if self._is_model_available("groq", "mixtral-8x7b-32768", healthy_providers):
+            if self._is_model_available("groq", "moonshotai/kimi-k2-instruct-0905", healthy_providers):
                 return self._build_decision(
-                    "groq", "mixtral-8x7b-32768", complexity, token_count,
-                    reason="Coding task routed to mixtral-8x7b-32768 (code specialist)",
+                    "groq", "moonshotai/kimi-k2-instruct-0905", complexity, token_count,
+                    reason="Coding task routed to moonshotai/kimi-k2-instruct-0905 (code specialist)",
                     confidence=0.90,
                 )
 

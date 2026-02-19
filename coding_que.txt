@@ -1,0 +1,71 @@
+Create a weekly meal plan for someone trying to:
+    - Lose weight (1500 calories/day)
+    - Build muscle (150g protein/day)
+    - Stay vegetarian
+    Include breakfast, lunch, dinner for 7 days
+
+
+I have $1000 to invest for 5 years. Compare these options:
+    1. Savings account (2% APR)
+    2. Index fund (average 7% return)
+    3. High-risk stocks (15% potential, but volatile)
+    
+    Calculate returns and recommend based on risk tolerance."
+
+
+
+
+
+
+    ######### 
+
+Design a database schema for a multi-tenant SaaS application with these requirements:
+    - Support 1000+ tenants
+    - Each tenant has users, projects, tasks, and comments
+    - Role-based access control (Admin, Manager, Member)
+    - Must support audit logging
+    - Query performance is critical
+    - Data isolation between tenants is mandatory
+    
+    Provide:
+    1. Complete schema design (tables, relationships)
+    2. Indexing strategy
+    3. Scalability considerations
+    4. Security approach
+    5. Migration strategy from single-tenant
+
+
+Design a real-time analytics system that:
+    - Ingests 100K events/second
+    - Provides sub-second query response
+    - Supports complex aggregations
+    - Handles late-arriving data
+    - Scales to 1B+ events/day
+    - Budget: $10K/month
+    
+    Specify:
+    - Technology stack
+    - Architecture diagram (describe in text)
+    - Data pipeline design
+    - Cost breakdown
+    - Failure handling
+    - Monitoring strategy""",
+    
+    # Deep technical reasoning
+    """A distributed system is experiencing these issues:
+    - Latency spikes every 30 minutes
+    - CPU usage patterns show sawtooth curve
+    - Memory usage gradually increases then drops
+    - Network traffic bursts coincide with latency
+    
+    Logs show:
+    - GC pauses during latency spikes
+    - Database connection pool exhaustion
+    - Cache invalidation storms
+    
+    Provide:
+    1. Root cause analysis
+    2. Short-term fixes (next 24 hours)
+    3. Long-term solutions (next 3 months)
+    4. Monitoring improvements
+    5. Architecture changes needed

@@ -56,7 +56,8 @@ class RequestAnalyzer:
 
     COMPLEX_KEYWORDS = [
         'analyze', 'compare', 'evaluate', 'synthesize', 'critique',
-        'design', 'architect', 'implement', 'optimize', 'debug',
+        'design', 'architect', 'architecture', 'diagram', 'draw',
+        'implement', 'optimize', 'debug',
         'explain in detail', 'step by step', 'comprehensive',
         'research', 'investigate', 'deep dive'
     ]
@@ -284,7 +285,7 @@ class RequestAnalyzer:
         """Get recommended model and provider based on complexity."""
         recommendations = {
             ComplexityLevel.SIMPLE: ("llama-3.1-8b-instant", "groq"),
-            ComplexityLevel.MODERATE: ("mixtral-8x7b-32768", "groq"),
+            ComplexityLevel.MODERATE: ("moonshotai/kimi-k2-instruct-0905", "groq"),
             ComplexityLevel.COMPLEX: ("llama-3.3-70b-versatile", "groq"),
         }
         return recommendations.get(complexity, ("llama-3.1-8b-instant", "groq"))
@@ -295,7 +296,7 @@ class RequestAnalyzer:
         pricing = {
             "llama-3.1-8b-instant": {"input": 0.00005, "output": 0.00008},
             "llama-3.3-70b-versatile": {"input": 0.00059, "output": 0.00079},
-            "mixtral-8x7b-32768": {"input": 0.00024, "output": 0.00024},
+            "moonshotai/kimi-k2-instruct-0905": {"input": 0.00024, "output": 0.00024},
         }
 
         if model not in pricing:

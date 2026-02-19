@@ -53,8 +53,8 @@ class GroqProvider(BaseProvider):
             max_tokens=8192,
             complexity_level=ComplexityLevel.COMPLEX,
         ),
-        "mixtral-8x7b-32768": ModelInfo(
-            model_id="mixtral-8x7b-32768",
+        "moonshotai/kimi-k2-instruct-0905": ModelInfo(
+            model_id="moonshotai/kimi-k2-instruct-0905",
             provider="groq",
             input_cost_per_1k=0.00024,
             output_cost_per_1k=0.00024,

@@ -94,11 +94,11 @@ def select_provider(state: RouterState) -> RouterState:
     # Pad with spaces for safe word-boundary matching
     padded = f" {user_text} "
 
-    # --- CODING keywords → mixtral-8x7b-32768 ---
+    # --- CODING keywords → moonshotai/kimi-k2-instruct-0905 ---
     # Use spaces around short words to avoid substring false matches
     # e.g. " api " won't match "capital", " class " won't match "classical"
     CODING_WORDS = [
-        'write a function', 'write code', 'fix this code', 'code to',
+        'write a function', 'write a code', 'fix this code', 'code to',
         'write a program', 'write a script', 'coding challenge',
         ' code ', ' function ', ' algorithm ', ' python ', ' javascript ',
         ' typescript ', ' java ', ' c++ ', ' rust ', ' golang ',
@@ -116,7 +116,8 @@ def select_provider(state: RouterState) -> RouterState:
         'analyze', 'compare', 'evaluate', 'synthesize', 'critique',
         'explain in detail', 'step by step', 'comprehensive', 'in-depth',
         'research', 'investigate', 'deep dive', 'pros and cons',
-        'design pattern', 'architect', 'optimize', 'trade-off',
+        'design', 'architect', 'architecture', 'diagram', 'draw',
+        'optimize', 'trade-off',
         'implications', 'essay', 'dissertation', 'thesis',
         'philosophy', 'economics',
     ]
@@ -149,12 +150,12 @@ def select_provider(state: RouterState) -> RouterState:
         except Exception:
             pass
 
-    # Priority 3: Coding keywords → mixtral
+    # Priority 3: Coding keywords → kimi-k2 (code specialist)
     # Check against both raw text and space-padded text
     if not selected_model:
         for word in CODING_WORDS:
             if word in padded or word in user_text:
-                selected_model = "mixtral-8x7b-32768"
+                selected_model = "moonshotai/kimi-k2-instruct-0905"
                 reason = f"Coding task detected (matched: '{word.strip()}')"
                 break
 
@@ -177,7 +178,7 @@ def select_provider(state: RouterState) -> RouterState:
     # Build fallback chain (all other models)
     all_models = [
         "llama-3.1-8b-instant",
-        "mixtral-8x7b-32768",
+        "moonshotai/kimi-k2-instruct-0905",
         "llama-3.3-70b-versatile",
         "gemma2-9b-it",
     ]
